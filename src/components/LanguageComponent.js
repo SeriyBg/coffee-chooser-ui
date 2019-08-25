@@ -7,7 +7,9 @@ class LanguageComponent extends Component {
 
     render() {
         return (
-            <LanguageSelect languages={this.props.languages} onChange={this.props.changeLanguage}/>
+            <LanguageSelect
+                languages={this.props.languages}
+                onChange={this.props.changeLanguage}/>
         );
     }
 }

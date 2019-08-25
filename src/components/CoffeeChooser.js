@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Button from "react-bootstrap/Button";
 import CoffeePanel from "./CoffeePanel";
 import axios from "axios";
+import {connect} from "react-redux";
+import {getLocalizedText} from '../i18n';
 
 class CoffeeChooser extends Component {
 
@@ -12,7 +14,7 @@ class CoffeeChooser extends Component {
     }
 
     handlerButton() {
-        axios.get('/coffee').then(res => {
+        axios.get('/coffee', {headers: {'content-language': this.props.language}}).then(res => {
             this.setState({coffeeName: res.data.name, coffeeType: res.data.type, regions: res.data.regions})
         }).then(d => console.log(this.state))
     }
@@ -23,16 +25,21 @@ class CoffeeChooser extends Component {
                 <Button
                     onClick={this.handlerButton}
                     variant="outline-info">
-                    What coffee should I drink today?
+                    {getLocalizedText(this.props.language, "coffee-choose-button")}
                 </Button>
                 <p/>
                 <CoffeePanel
                     coffeeName={this.state.coffeeName}
                     coffeeType={this.state.coffeeType}
-                    regions={this.state.regions}/>
+                    regions={this.state.regions}
+                    language={this.props.language}/>
             </>
         );
     }
 }
 
-export default CoffeeChooser;
+const mapStateToProps = (state) => ({
+    language: state.languages.filter(item => item.active)[0].id,
+});
+
+export default connect(mapStateToProps, null)(CoffeeChooser);
