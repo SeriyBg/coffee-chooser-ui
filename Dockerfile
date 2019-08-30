@@ -1,5 +1,7 @@
 FROM node:12.2.0-alpine as build
 WORKDIR /app
+ARG service_url='localhost:8080'
+ENV SERVICE_URL=$service_url
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/package.json
 RUN npm install --silent
