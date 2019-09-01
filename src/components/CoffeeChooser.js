@@ -11,7 +11,7 @@ class CoffeeChooser extends Component {
     constructor(props) {
         super(props);
         this.handlerButton = this.handlerButton.bind(this)
-        this.state = {coffeeName: '', coffeeType: '', regions: [], error: false}
+        this.state = {coffeeName: '', coffeeType: '', regions: [], error: false, isLoading: false}
     }
 
     handlerButton() {
@@ -24,9 +24,12 @@ class CoffeeChooser extends Component {
         return (
             <>
                 <Button
-                    onClick={this.handlerButton}
+                    disabled={this.state.isLoading}
+                    onClick={!this.state.isLoading ? this.handlerButton : null}
                     variant="outline-info">
-                    {getLocalizedText(this.props.language, "coffee-choose-button")}
+                    {this.state.isLoading ?
+                        getLocalizedText(this.props.language, "loading") :
+                        getLocalizedText(this.props.language, "coffee-choose-button")}
                 </Button>
                 <p/>
                 {
