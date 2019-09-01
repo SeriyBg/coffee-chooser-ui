@@ -3,13 +3,15 @@ const languages = {
         "coffee-card-title": "Your coffee of the day",
         "coffee-type": "Type",
         "coffee-regions": "Regions",
-        "coffee-choose-button": "What coffee should I drink today?"
+        "coffee-choose-button": "What coffee should I drink today?",
+        "request-error": "Something went wrong!"
     },
     "ua": {
         "coffee-card-title": "Твоя кава дня",
         "coffee-type": "Тип",
         "coffee-regions": "Регіон",
-        "coffee-choose-button": "Яку каву мені сьогодні випити?"
+        "coffee-choose-button": "Яку каву мені сьогодні випити?",
+        "request-error": "Щось пішло не так!"
     }
 };
 

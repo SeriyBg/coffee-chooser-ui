@@ -1,7 +1,7 @@
 ##################################################################################################
 # Coffee service
 ##################################################################################################
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: coffee-ui
@@ -18,11 +18,16 @@ spec:
     spec:
       containers:
         - name: coffee-ui
-          image: sbishyr/coffee-ui:1.0
+          image: sbishyr/coffee-ui:2.1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
               name: http
+  selector:
+    matchLabels:
+      app: coffee-ui
+      version: "1.0"
+      serving: "true"
 ---
 apiVersion: v1
 kind: Service
