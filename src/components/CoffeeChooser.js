@@ -11,13 +11,20 @@ class CoffeeChooser extends Component {
     constructor(props) {
         super(props);
         this.handlerButton = this.handlerButton.bind(this)
-        this.state = {coffeeName: '', coffeeType: '', regions: [], error: false, isLoading: false}
+        this.state = {
+            coffeeName: '',
+            coffeeType: '',
+            regions: [],
+            error: false,
+            isLoading: false
+        }
     }
 
     handlerButton() {
+        this.setState({isLoading: true});
         axios.get('/coffee', {headers: {'content-language': this.props.language}}).then(res => {
-            this.setState({coffeeName: res.data.name, coffeeType: res.data.type, regions: res.data.regions, error: false})
-        }, error => this.setState({error: true}))
+            this.setState({coffeeName: res.data.name, coffeeType: res.data.type, regions: res.data.regions, error: false, isLoading: false})
+        }, error => this.setState({error: true, isLoading: false}))
     }
 
     render() {
