@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: coffee-ui
-          image: sbishyr/coffee-ui:2.2
+          image: sbishyr/coffee-ui:2.3
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -45,4 +45,3 @@ spec:
   selector:
     app: coffee-ui
     serving: "true"
----
