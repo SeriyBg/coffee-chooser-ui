@@ -1,0 +1,9 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: coffee-ui
+spec:
+  host: coffee-ui
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
